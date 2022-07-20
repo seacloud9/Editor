@@ -23,6 +23,8 @@ import { EnableDevToolsIPC } from "../ipc/enable-devtools";
 
 import { ToucharIPC } from "../ipc/touchbar";
 
+import { CloseProcessIPC, CreateProcessIPC, WriteProcessIPC } from "../ipc/node-pty";
+
 export interface IIPCHandler {
 	/**
 	 * Defines the name of the channel to listen.
@@ -72,6 +74,10 @@ export class IPCHandler {
 		this.registerHandler(new OpenDevToolsIPC());
 		
 		this.registerHandler(new ToucharIPC());
+
+		this.registerHandler(new CreateProcessIPC());
+		this.registerHandler(new WriteProcessIPC());
+		this.registerHandler(new CloseProcessIPC());
 	}
 
 	/**

@@ -26,6 +26,10 @@ export enum IPCRequests {
 	EnableDevTools = "enabledevtools",
 
 	SetTouchBar = "settouchbar",
+
+	CreatePtyProcess = "createptyprocess",
+	WritePtyProcess = "writeptyprocess",
+	ClosePtyProcess = "closeptyprocess",
 }
 
 export enum IPCResponses {
@@ -53,4 +57,8 @@ export enum IPCResponses {
 	SendWindowMessage = "sendwindowmessage",
 
 	EnableDevTools = "enabledevtools",
+
+	CreatePtyProcess = "createptyprocess",
+	WritePtyProcess = "writeptyprocess",
+	ClosePtyProcess = "closeptyprocess",
 }
