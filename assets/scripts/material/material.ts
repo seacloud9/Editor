@@ -1,5 +1,5 @@
 import {
-	Scene, PushMaterial, MaterialDefines, Effect, Tools, Color3, BaseTexture, SerializationHelper,
+	Scene, PushMaterial, MaterialDefines, Effect, Tools, Color3, BaseTexture, SerializationHelper, bindClipPlane,
 	SubMesh, Matrix, AbstractMesh, Mesh, MaterialHelper, MaterialFlags, EffectFallbacks, VertexBuffer, IAnimatable,
 	RegisterClass, IEffectCreationOptions, Nullable, serialize, serializeAsTexture, expandToProperty, serializeAsColor3,
 } from "@babylonjs/core";
@@ -123,7 +123,7 @@ export class /*{__shader_class_name__}*/AMaterial extends PushMaterial {
         defines._needNormals = MaterialHelper.PrepareDefinesForLights(scene, mesh, defines, false, this._maxSimultaneousLights, this._disableLighting);
 
         // Values that need to be evaluated on every frame
-        MaterialHelper.PrepareDefinesForFrameBoundValues(scene, engine, defines, useInstances ? true : false);
+        MaterialHelper.PrepareDefinesForFrameBoundValues(scene, engine, this, defines, useInstances ? true : false);
 
         // Attribs
         MaterialHelper.PrepareDefinesForAttributes(mesh, defines, true, true);
@@ -242,7 +242,7 @@ export class /*{__shader_class_name__}*/AMaterial extends PushMaterial {
             }
 
             // Clip plane
-            MaterialHelper.BindClipPlane(this._activeEffect, scene);
+            bindClipPlane(effect, this, scene);
 
             // Point size
             if (this.pointsCloud) {
